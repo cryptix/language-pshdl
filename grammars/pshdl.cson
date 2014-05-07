@@ -1,0 +1,80 @@
+'fileTypes': [
+  'pshdl'
+]
+'foldingStartMarker': '/\\*|\\{\\s*$|<\\['
+'foldingStopMarker': '\\*/|^\\s*\\}|\\]>'
+'name': 'PSHDL'
+'patterns': [
+  {
+    'captures':
+      '1':
+        'name': 'meta.toc-list.banner.block.pshdl'
+    'match': '^/\\* =(\\s*.*?)\\s*= \\*/$\\n?'
+    'name': 'comment.block.pshdl'
+  }
+  {
+    'begin': '/\\*'
+    'captures':
+      '0':
+        'name': 'punctuation.definition.comment.pshdl'
+    'end': '\\*/'
+    'name': 'comment.block.pshdl'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'meta.toc-list.banner.line.pshdl'
+    'match': '^// =(\\s*.*?)\\s*=\\s*$\\n?'
+    'name': 'comment.line.banner.pshdl'
+  }
+  {
+    'begin': '//'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.comment.pshdl'
+    'end': '$\\n?'
+    'name': 'comment.line.double-slash.pshdl'
+    'patterns': [
+      {
+        'match': '(?>\\\\\\s*\\n)'
+        'name': 'punctuation.separator.continuation.pshdl'
+      }
+    ]
+  }
+  {
+    'match': '\\b(case|default|else|enum|extends|for|function|generate|if|import|include|inline|interface|module|native|package|process|register|simulation|substitute|switch|testbench|\\$clk|\\$rst|true|false)\\b'
+    'name': 'keyword.control.others.pshdl'
+  }
+  {
+    'match': '\\b(([1-9][0-9]+)|[0-9])\\b'
+    'name': 'constant.numeric.decimal.pshdl'
+  }
+  {
+    'match': '\\b(0x[a-fA-F0-9_]+)\\b'
+    'name': 'constant.numeric.hex.pshdl'
+  }
+  {
+    'match': '\\b(0b[01_]+)\\b'
+    'name': 'constant.numeric.binary.pshdl'
+  }
+  {
+    'match': '\\b(in|out|inout|const|param)\\b'
+    'name': 'keyword.control.direction.pshdl'
+  }
+  {
+    'match': '\\b(bit|bool|int|uint|string)\\b'
+    'name': 'keyword.control.primitive.pshdl'
+  }
+  {
+    'begin': '"'
+    'end': '"'
+    'name': 'string.quoted.double.untitled'
+    'patterns': [
+      {
+        'match': '\\\\.'
+        'name': 'constant.character.escape.untitled'
+      }
+    ]
+  }
+]
+'scopeName': 'source.pshdl'
