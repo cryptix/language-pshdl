@@ -6,6 +6,21 @@
 'name': 'PSHDL'
 'patterns': [
   {
+    'begin': '/\\*\\*'
+    'captures':
+      '0':
+        'name': 'punctuation.definition.comment.pshdl'
+    'end': '\\*/'
+    'name': 'comment.block.documentation.pshdl'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'meta.toc-list.banner.block.pshdl'
+    'match': '^/\\*\\* =(\\s*.*?)\\s*= \\*/$\\n?'
+    'name': 'comment.block.documentation.pshdl'
+  }
+  {
     'captures':
       '1':
         'name': 'meta.toc-list.banner.block.pshdl'
@@ -28,6 +43,20 @@
     'name': 'comment.line.banner.pshdl'
   }
   {
+    'begin': '///'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.comment.pshdl'
+    'end': '$\\n?'
+    'name': 'comment.line.documentation.triple-slash.pshdl'
+    'patterns': [
+      {
+        'match': '(?>\\\\\\s*\\n)'
+        'name': 'punctuation.separator.continuation.pshdl'
+      }
+    ]
+  }
+  {
     'begin': '//'
     'beginCaptures':
       '0':
@@ -42,8 +71,64 @@
     ]
   }
   {
-    'match': '\\b(case|default|else|enum|extends|for|function|generate|if|import|include|inline|interface|module|native|package|process|register|simulation|substitute|switch|testbench|\\$clk|\\$rst|true|false)\\b'
-    'name': 'keyword.control.others.pshdl'
+    'match': '\\b(case|default|else|for|if|switch)\\b'
+    'name': 'keyword.control.pshdl'
+  }
+  {
+    'match': '\\b(in|out|inout|const|param)\\b'
+    'name': 'storage.modifier.direction.pshdl'
+  }
+  {
+    'match': '<>'
+    'name': 'storage.type.any.pshdl'
+  }
+  {
+    'match': '='
+    'name': 'keyword.operator.assignment.pshdl'
+  }
+  {
+    'match': '->'
+    'name': 'keyword.operator.function.inline.pshdl'
+  }
+  {
+    'match': '\\b(bit|bool|int|uint|string)\\b'
+    'name': 'storage.type.primitive.pshdl'
+  }
+  {
+    'match': '(\\!|\\|\\||\\&\\&)'
+    'name': 'keyword.operator.logic.pshdl'
+  }
+  {
+    'match': '(\\*\\*)|[\\+\\-\\*\\/\\%]'
+    'name': 'keyword.operator.arith.pshdl'
+  }
+  {
+    'match': '[\\#\\&\\|\\~\\^]'
+    'name': 'keyword.operator.binary.pshdl'
+  }
+  {
+    'match': '(\\<\\<|\\>\\>\\>|\\>\\>)'
+    'name': 'keyword.operator.shift.pshdl'
+  }
+  {
+    'match': '\\b(enum|extends|generate|import|include|interface|module|package|process|testbench)\\b'
+    'name': 'keyword.other.module.pshdl'
+  }
+  {
+    'match': '\\b(register)\\b'
+    'name': 'storage.modifier.register.pshdl'
+  }
+  {
+    'match': '(\\$clk|\\$rst)\\b'
+    'name': 'support.variable'
+  }
+  {
+    'match': '\\b(true|false)\\b'
+    'name': 'support.constant'
+  }
+  {
+    'match': '\\b(function|inline|native|simulation|substitute)\\b'
+    'name': 'keyword.other.function.pshdl'
   }
   {
     'match': '\\b(([1-9][0-9]+)|[0-9])\\b'
@@ -56,14 +141,6 @@
   {
     'match': '\\b(0b[01_]+)\\b'
     'name': 'constant.numeric.binary.pshdl'
-  }
-  {
-    'match': '\\b(in|out|inout|const|param)\\b'
-    'name': 'keyword.control.direction.pshdl'
-  }
-  {
-    'match': '\\b(bit|bool|int|uint|string)\\b'
-    'name': 'keyword.control.primitive.pshdl'
   }
   {
     'begin': '"'
