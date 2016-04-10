@@ -111,7 +111,7 @@
     'name': 'keyword.operator.shift.pshdl'
   }
   {
-    'match': '\\b(enum|extends|generate|import|include|interface|module|package|process|testbench)\\b'
+    'match': '\\b(enum|extends|generate|import|include|export|interface|module|package|process|testbench)\\b'
     'name': 'keyword.other.module.pshdl'
   }
   {
@@ -120,11 +120,11 @@
   }
   {
     'match': '(\\$clk|\\$rst)\\b'
-    'name': 'support.variable'
+    'name': 'support.variable.pshdl'
   }
   {
     'match': '\\b(true|false)\\b'
-    'name': 'support.constant'
+    'name': 'support.constant.pshdl'
   }
   {
     'match': '\\b(function|inline|native|simulation|substitute)\\b'
@@ -133,6 +133,10 @@
   {
     'match': '\\b(([1-9][0-9]+)|[0-9])\\b'
     'name': 'constant.numeric.decimal.pshdl'
+  }
+  {
+    'match': '\@[a-zA-Z_]+'
+    'name': 'storage.type.annotation.pshdl'
   }
   {
     'match': '\\b(0x[a-fA-F0-9_]+)\\b'
@@ -145,11 +149,11 @@
   {
     'begin': '"'
     'end': '"'
-    'name': 'string.quoted.double.untitled'
+    'name': 'string.quoted.double.untitled.pshdl'
     'patterns': [
       {
         'match': '\\\\.'
-        'name': 'constant.character.escape.untitled'
+        'name': 'constant.character.escape.untitled.pshdl'
       }
     ]
   }
