@@ -1,8 +1,8 @@
 {
   "name": "language-pshdl",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Syntax definition for PSHDL",
-  "repository": "https://github.com/cryptix/language-pshdl",
+  "repository": "https://github.com/pshdl/language-pshdl",
   "license": "MIT",
   "engines": {
     "atom": ">0.50.0"
