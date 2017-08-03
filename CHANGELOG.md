@@ -1,3 +1,6 @@
+## 0.1.2 - Updated repository location
+Just move the project over to https://github.com/pshdl/language-pshdl
+
 ## 0.1.1 - Updated for new features
 Support for documentation comments has been added
 Better and more detailed highlighter
