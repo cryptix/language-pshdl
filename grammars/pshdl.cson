@@ -91,7 +91,7 @@
     'name': 'keyword.operator.function.inline.pshdl'
   }
   {
-    'match': '\\b(bit|bool|int|uint|string)\\b'
+    'match': '\\b(bit|bool|int|uint|string|uint32|int32)\\b'
     'name': 'storage.type.primitive.pshdl'
   }
   {
