@@ -1,161 +1,225 @@
-'fileTypes': [
+fileTypes: [
   'pshdl'
 ]
-'foldingStartMarker': '/\\*|\\{\\s*$|<\\['
-'foldingStopMarker': '\\*/|^\\s*\\}|\\]>'
-'name': 'PSHDL'
-'patterns': [
+foldingStartMarker: '/\\*|\\{\\s*$|<\\['
+foldingStopMarker: '\\*/|^\\s*\\}|\\]>'
+name: 'PSHDL'
+patterns: [
   {
-    'begin': '/\\*\\*'
-    'captures':
-      '0':
-        'name': 'punctuation.definition.comment.pshdl'
-    'end': '\\*/'
-    'name': 'comment.block.documentation.pshdl'
+    include: '#comments'
   }
   {
-    'captures':
-      '1':
-        'name': 'meta.toc-list.banner.block.pshdl'
-    'match': '^/\\*\\* =(\\s*.*?)\\s*= \\*/$\\n?'
-    'name': 'comment.block.documentation.pshdl'
-  }
-  {
-    'captures':
-      '1':
-        'name': 'meta.toc-list.banner.block.pshdl'
-    'match': '^/\\* =(\\s*.*?)\\s*= \\*/$\\n?'
-    'name': 'comment.block.pshdl'
-  }
-  {
-    'begin': '/\\*'
-    'captures':
-      '0':
-        'name': 'punctuation.definition.comment.pshdl'
-    'end': '\\*/'
-    'name': 'comment.block.pshdl'
-  }
-  {
-    'captures':
-      '1':
-        'name': 'meta.toc-list.banner.line.pshdl'
-    'match': '^// =(\\s*.*?)\\s*=\\s*$\\n?'
-    'name': 'comment.line.banner.pshdl'
-  }
-  {
-    'begin': '///'
-    'beginCaptures':
-      '0':
-        'name': 'punctuation.definition.comment.pshdl'
-    'end': '$\\n?'
-    'name': 'comment.line.documentation.triple-slash.pshdl'
-    'patterns': [
+    begin: '<\\['
+    end: '\\]>'
+    name: 'source.pshdl.generator'
+    patterns:[
       {
-        'match': '(?>\\\\\\s*\\n)'
-        'name': 'punctuation.separator.continuation.pshdl'
+        include: '#comments'
+      }
+      {
+        include: '#numbers'
+      }
+      {
+        match: '\\b(register)\\b'
+        name: 'storage.modifier.register.generator.pshdl'
+      }
+      {
+        match: '\\b(r|rw|w)\\b'
+        name: 'storage.modifier.direction.generator.pshdl'
+      }
+      {
+        match: '\\b(const)\\b'
+        name: 'storage.modifier.constant.generator.pshdl'
+      }
+      {
+        match: '\\b(mask|silent|error|limit)\\b'
+        name: 'storage.modifier.value.generator.pshdl'
+      }
+      {
+        match: '\\b(writtenFlag|readFlag)\\b'
+        name: 'storage.modifier.flags.generator.pshdl'
+      }
+      {
+        match: '(\\$date|\\$time|\\$checkSum)\\b'
+        name: 'constant.other.generator.pshdl'
+      }
+      {
+        match: '(\\$[a-zA-Z_]+)\\b'
+        name: 'variable.external.generator.pshdl'
+      }
+      {
+        match: '\\b(row|memory|column|alias|fill)\\b'
+        name: 'keyword.control.generator.pshdl'
+      }
+      {
+        match: '\\b(bit|int|uint)\\b'
+        name: 'storage.type.primitive.pshdl'
       }
     ]
   }
   {
-    'begin': '//'
-    'beginCaptures':
-      '0':
-        'name': 'punctuation.definition.comment.pshdl'
-    'end': '$\\n?'
-    'name': 'comment.line.double-slash.pshdl'
-    'patterns': [
+    match: '\\b(case|default|else|for|if|switch)\\b'
+    name: 'keyword.control.pshdl'
+  }
+  {
+    match: '\\b(in|out|inout|const|param)\\b'
+    name: 'storage.modifier.direction.pshdl'
+  }
+  {
+    match: '<>'
+    name: 'storage.type.any.pshdl'
+  }
+  {
+    match: '='
+    name: 'keyword.operator.assignment.pshdl'
+  }
+  {
+    match: '->'
+    name: 'keyword.operator.function.inline.pshdl'
+  }
+  {
+    match: '\\b(bit|bool|int|uint|string|uint32|int32)\\b'
+    name: 'storage.type.primitive.pshdl'
+  }
+  {
+    match: '(\\!|\\|\\||\\&\\&)'
+    name: 'keyword.operator.logic.pshdl'
+  }
+  {
+    match: '(\\*\\*)|[\\+\\-\\*\\/\\%]'
+    name: 'keyword.operator.arith.pshdl'
+  }
+  {
+    match: '[\\#\\&\\|\\~\\^]'
+    name: 'keyword.operator.binary.pshdl'
+  }
+  {
+    match: '(\\<\\<|\\>\\>\\>|\\>\\>)'
+    name: 'keyword.operator.shift.pshdl'
+  }
+  {
+    match: '\\b(enum|extends|generate|import|include|export|interface|module|package|process|testbench)\\b'
+    name: 'keyword.other.module.pshdl'
+  }
+  {
+    match: '\\b(register)\\b'
+    name: 'storage.modifier.register.pshdl'
+  }
+  {
+    match: '(\\$clk|\\$rst)\\b'
+    name: 'support.variable.pshdl'
+  }
+  {
+    match: '\\b(true|false)\\b'
+    name: 'support.constant.pshdl'
+  }
+  {
+    match: '\\b(function|inline|native|simulation|substitute)\\b'
+    name: 'keyword.other.function.pshdl'
+  }
+  {
+    match: '\@[a-zA-Z_]+'
+    name: 'storage.type.annotation.pshdl'
+  }
+  {
+    include: '#numbers'
+  }
+  {
+    begin: '"'
+    end: '"'
+    name: 'string.quoted.double.untitled.pshdl'
+    patterns: [
       {
-        'match': '(?>\\\\\\s*\\n)'
-        'name': 'punctuation.separator.continuation.pshdl'
-      }
-    ]
-  }
-  {
-    'match': '\\b(case|default|else|for|if|switch)\\b'
-    'name': 'keyword.control.pshdl'
-  }
-  {
-    'match': '\\b(in|out|inout|const|param)\\b'
-    'name': 'storage.modifier.direction.pshdl'
-  }
-  {
-    'match': '<>'
-    'name': 'storage.type.any.pshdl'
-  }
-  {
-    'match': '='
-    'name': 'keyword.operator.assignment.pshdl'
-  }
-  {
-    'match': '->'
-    'name': 'keyword.operator.function.inline.pshdl'
-  }
-  {
-    'match': '\\b(bit|bool|int|uint|string|uint32|int32)\\b'
-    'name': 'storage.type.primitive.pshdl'
-  }
-  {
-    'match': '(\\!|\\|\\||\\&\\&)'
-    'name': 'keyword.operator.logic.pshdl'
-  }
-  {
-    'match': '(\\*\\*)|[\\+\\-\\*\\/\\%]'
-    'name': 'keyword.operator.arith.pshdl'
-  }
-  {
-    'match': '[\\#\\&\\|\\~\\^]'
-    'name': 'keyword.operator.binary.pshdl'
-  }
-  {
-    'match': '(\\<\\<|\\>\\>\\>|\\>\\>)'
-    'name': 'keyword.operator.shift.pshdl'
-  }
-  {
-    'match': '\\b(enum|extends|generate|import|include|export|interface|module|package|process|testbench)\\b'
-    'name': 'keyword.other.module.pshdl'
-  }
-  {
-    'match': '\\b(register)\\b'
-    'name': 'storage.modifier.register.pshdl'
-  }
-  {
-    'match': '(\\$clk|\\$rst)\\b'
-    'name': 'support.variable.pshdl'
-  }
-  {
-    'match': '\\b(true|false)\\b'
-    'name': 'support.constant.pshdl'
-  }
-  {
-    'match': '\\b(function|inline|native|simulation|substitute)\\b'
-    'name': 'keyword.other.function.pshdl'
-  }
-  {
-    'match': '\\b(([1-9][0-9]+)|[0-9])\\b'
-    'name': 'constant.numeric.decimal.pshdl'
-  }
-  {
-    'match': '\@[a-zA-Z_]+'
-    'name': 'storage.type.annotation.pshdl'
-  }
-  {
-    'match': '\\b(0x[a-fA-F0-9_]+)\\b'
-    'name': 'constant.numeric.hex.pshdl'
-  }
-  {
-    'match': '\\b(0b[01_]+)\\b'
-    'name': 'constant.numeric.binary.pshdl'
-  }
-  {
-    'begin': '"'
-    'end': '"'
-    'name': 'string.quoted.double.untitled.pshdl'
-    'patterns': [
-      {
-        'match': '\\\\.'
-        'name': 'constant.character.escape.untitled.pshdl'
+        match: '\\\\.'
+        name: 'constant.character.escape.untitled.pshdl'
       }
     ]
   }
 ]
-'scopeName': 'source.pshdl'
+repository:
+  numbers: {
+    patterns: [
+        {
+          match: '\\b(([1-9][0-9_]+)|[0-9])\\b'
+          name: 'constant.numeric.decimal.pshdl'
+        }
+        {
+          match: '\\b(0x[a-fA-F0-9_]+)\\b'
+          name: 'constant.numeric.hex.pshdl'
+        }
+        {
+          match: '\\b(0b[01_]+)\\b'
+          name: 'constant.numeric.binary.pshdl'
+        }
+    ]
+  }
+  comments: {
+    patterns: [
+        {
+          begin: '/\\*\\*'
+          captures:
+            0:
+              name: 'punctuation.definition.comment.pshdl'
+          end: '\\*/'
+          name: 'comment.block.documentation.pshdl'
+        }
+        {
+          captures:
+            1:
+              name: 'meta.toc-list.banner.block.pshdl'
+          match: '^/\\*\\* =(\\s*.*?)\\s*= \\*/$\\n?'
+          name: 'comment.block.documentation.pshdl'
+        }
+        {
+          captures:
+            1:
+              name: 'meta.toc-list.banner.block.pshdl'
+          match: '^/\\* =(\\s*.*?)\\s*= \\*/$\\n?'
+          name: 'comment.block.pshdl'
+        }
+        {
+          begin: '/\\*'
+          captures:
+            0:
+              name: 'punctuation.definition.comment.pshdl'
+          end: '\\*/'
+          name: 'comment.block.pshdl'
+        }
+        {
+          captures:
+            1:
+              name: 'meta.toc-list.banner.line.pshdl'
+          match: '^// =(\\s*.*?)\\s*=\\s*$\\n?'
+          name: 'comment.line.banner.pshdl'
+        }
+        {
+          begin: '///'
+          beginCaptures:
+            0:
+              name: 'punctuation.definition.comment.pshdl'
+          end: '$\\n?'
+          name: 'comment.line.documentation.triple-slash.pshdl'
+          patterns: [
+            {
+              match: '(?>\\\\\\s*\\n)'
+              name: 'punctuation.separator.continuation.pshdl'
+            }
+          ]
+        }
+        {
+          begin: '//'
+          beginCaptures:
+            0:
+              name: 'punctuation.definition.comment.pshdl'
+          end: '$\\n?'
+          name: 'comment.line.double-slash.pshdl'
+          patterns: [
+            {
+              match: '(?>\\\\\\s*\\n)'
+              name: 'punctuation.separator.continuation.pshdl'
+            }
+          ]
+        }
+    ]
+  }
+scopeName: 'source.pshdl'
